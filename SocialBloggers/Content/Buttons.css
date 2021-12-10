@@ -1,0 +1,70 @@
+﻿
+button, #createAccount {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 3px;
+    border-width: 0;
+    display: inline-block;
+    color: white;
+    font-size: 1em;
+    box-shadow: rgba(25,25,25,.04) 0 0 1px 0,rgba(0,0,0,.1) 0 3px 4px 0;
+    margin-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.delete-btn, .edit-btn {
+    color: #183a1d;
+    background-color: transparent;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#login, #createAccount {
+    background-color: #f0a04b !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+.account button {
+    color: rgb(220, 233, 242);
+    background-color: rgb(46, 102, 158);
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+
+.new-btn, #newpost-submit {
+    background-color: #183a1d;
+    height: 25px;
+}
+
+.follow-btn {
+    background-color: #183a1d;
+    height: 20px;
+}
+
+.circle-btn {
+    color: #f0a04b;
+    background-color: white;
+    border-radius: 15px;
+    height: 25px;
+    width: 25px;
+    transition: width 0.5s, height 0.5s;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.liked-btn {
+    color: white !important;
+    background-color: #f0a04b !important;
+}
+
+.circle-btn:hover {
+    width: 29px;
+    height: 29px;
+}

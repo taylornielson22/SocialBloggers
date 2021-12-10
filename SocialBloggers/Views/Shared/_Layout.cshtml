@@ -1,0 +1,66 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="main">
+        <div class="navbar navbar-fixed-top pink-header">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Soical Bloggers", "Posts", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a id="myProfile">My Profile</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                        <li>@Html.ActionLink("AllUsers", "AllUsers", "Home")</li>
+                    </ul>
+                </div>
+                <div style="margin-left:auto; margin-right:0" id="currentUser"></div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="editModal" class="popup">
+            <div class="popup-content">
+                <div class="popup-header ">
+                    <h4 class="modern-font modal-title">Edit Post</h4>
+                </div>
+                <div class="textbox-input">
+                    <label for="title">Title: </label>
+                    <input type="text" id="editTitle">
+                </div>
+                <div class="textbox-input">
+                    <label for="content">Content: </label>
+                    <textarea id="editContent" rows="3"></textarea>
+                </div>
+                <div class="popup-footer">
+                    <button id="close" type="button">Close</button>
+                    <button id="save" type="button">Save</button>
+                </div>
+            </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <script src="~/Scripts/BlogPosts.js"></script>
+
+</body>
+
+</html>

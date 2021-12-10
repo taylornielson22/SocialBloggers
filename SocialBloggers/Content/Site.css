@@ -1,0 +1,259 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fefbe9;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    line-height: 1.5;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px #e5e5e5;
+    border: 0.5px solid #e5e5e5;
+}
+.textbox-input {
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #777 !important;
+    padding-bottom:10px;
+    
+}
+center-text{
+    text-align: center;
+}
+.login {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.cute-font {
+    font-family: Garamond, serif;
+    color: #f0a04b;
+}
+
+.followings {
+    color: #183a1d;
+    font-weight: 800 !important;
+    font-size: 11px !important;
+    color: #0d2481;
+    letter-spacing: .5px;
+    width: fit-content() !important;
+    display: unset;
+}
+
+.post-footer {
+    color: rgb(31, 45, 61);
+    flex-direction: row;
+}
+
+.post-header {
+    font-size: 18px;
+    padding-top: 10px !important;
+    margin-bottom: .3rem !important;
+    line-height: 25px;
+    color: #183a1d;
+}
+
+.pink-header {
+    background-color: #e1eedd;
+    color: #183a1d;
+    float: left;
+    height: 50px;
+    font-size: 18px;
+    line-height: 20px;
+
+}
+.account {
+    line-height: 1.5;
+    padding: 0px 10px 10px;
+    margin: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 5px;
+    border-radius:4px;
+}
+    
+.blue-color {
+    color: rgb(46, 102, 158);
+}
+.tan-color {
+    background-color:rgb(255, 217, 204);
+}
+.modern-font {
+    font: small-caps lighter 18px sans-serif;
+}
+
+    .account a {
+        font-size: 16px;
+        padding-top: 10px !important;
+        line-height: 25px;
+        display: unset;
+        width: fit-content() !important;
+    }
+.postbox {
+    padding: 10px 10px 10px;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+    border-radius:4px;
+}
+.creambox {
+    background-color: rgb(250, 234, 214);
+}
+.pinkbox {
+    background-color: rgb(250, 238, 235);
+}
+.orangebox {
+    background-color: rgb(249, 208, 124);
+}
+.greenbox {
+    background-color: rgb(197, 227, 193);
+}
+.bluebox {
+    background-color: rgb(220, 233, 242)
+}
+.pink-header a {
+    color: #183a1d;
+}
+.float-right {
+    float: right;
+    display: block;
+}
+.borderpost {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.margin-left{
+    margin-left: 10%;
+}
+.post-font {
+    font-weight: 800 !important;
+    font-size: 11px !important;
+    color: #777 !important;
+    letter-spacing: .5px;
+    width: fit-content() !important;
+    display: unset;
+}
+.post-data{
+    display:unset;
+    width:fit-content() !important;
+
+}
+#content {
+    color: rgb(31, 45, 61) !important;
+    font-size: 16px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item-left {
+    flex: 50%;
+}
+
+.flex-item-right {
+    flex: 50%;
+}
+
+.collapsible {
+    display: none;
+}
+
+.line input {
+    border-radius: 8px;
+    background-color: white;
+    margin: 8px 3px 3px 3px;
+    border: solid 1px #f0a04b;
+}
+
+
+.comment {
+    border-radius: 8px;
+    background-color: white;
+    border:solid 3px #f0a04b;;
+    padding: 6px 12px;
+    margin: 12px 0px;
+}
+.line {
+    border-top: solid 1px rgb(128 128 128);
+    margin-top: 10px;
+    padding-top: 3px;
+    padding-right: 10px;
+}
+
+.following .tooltip-following {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+
+.following .tooltip-following, .followers .tooltip-followers {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+}
+.following:hover .tooltip-following {
+    visibility: visible;
+}
+.followers:hover .tooltip-followers {
+    visibility: visible;
+}
+.create-account {
+    width:600px;
+    margin-left: calc(50% - 300px)
+}
+.create-group div {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.create-group {
+    display: flex;
+    
+}
+.create-label{
+    margin: 9px 9px 9px 0px;
+    width: 70px;
+}
+
+.text-danger {
+    color: #a94442;
+}

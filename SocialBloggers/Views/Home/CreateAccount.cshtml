@@ -1,0 +1,33 @@
+﻿@model SocialBloggers.Models.User
+
+<h1 class="cute-font text-center">Create New Account</h1>
+@using (Html.BeginForm("CreateAccount"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="create-account">
+        <hr />
+        <div class="create-form">
+            <div class="create-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "create-label" })
+                <div>
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "textbox-input" } })
+                </div>
+            </div>
+
+            <div class="create-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "create-label" })
+                <div>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "textbox-input" } })
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <input id="createAccount" type="submit" value="Creat Account" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

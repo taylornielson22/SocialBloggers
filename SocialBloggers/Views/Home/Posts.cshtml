@@ -1,0 +1,107 @@
+﻿@model SocialBloggers.Models.HomeSummary
+
+
+<h1 class="cute-font" text-center">@ViewBag.Title</h1>
+@if (ViewBag.Title != "Blog Feed")
+{
+<div class="followings">
+    <div class="following">
+        Following: @Model.CurrentProfile.Following.Count()
+        <span class="tooltip-following">
+            @foreach (var user in Model.CurrentProfile.Following)
+            {
+              <div>@user.Follows</div>
+            }
+            </span>
+    </div>
+    <div class="followers">Followers: @Model.CurrentProfile.Followers.Count() 
+        <span class="tooltip-followers">
+            @foreach (var follower in Model.CurrentProfile.Followers)
+            {
+              <div>@follower.User</div>
+            }
+        </span>
+    </div>
+</div>
+   
+}
+<div class="borderpost">
+    @if (Model.CurrentProfile.Username == Model.CurrentUser.Username)
+    {
+        <button class="new-btn">New Post</button>
+        <br />
+
+        <div class="collapsible" id="newPost">
+            <form>
+                <div class="textbox-input">
+                    <label for="title">Title</label>
+                    <input type="text" id="title">
+                </div>
+                <div class="textbox-input">
+                    <label for="content">Content</label>
+                    <textarea id="content" rows="4" placeholder="What's new?"></textarea>
+                    <button type="submit" id="newpost-submit">Post</button>
+                </div>
+            </form>
+        </div>
+        <br />
+    }
+
+    @foreach (var item in Model.AllPosts)
+    {
+
+        <div class="postbox @item.ColorClass" id=@item.Postid>
+            <div id="postBox">
+                <p class="post-data post-header modern-font" id="title">@Html.DisplayFor(modelItem => item.Title)</p>
+                @if (item.Username.Trim() == Model.CurrentUser.Username)
+                {
+                    <a class="float-right edit-btn">&#128394;</a>
+                    <a class="float-right delete-btn">&#128465;</a>
+
+                }
+                <div><a id="username" class="post-font">@Html.DisplayFor(modelItem => item.Username)</a> @Html.DisplayFor(modelItem => item.Date)</div>
+                <div>
+                    <p class="post-data" id="content">@Html.DisplayFor(modelItem => item.Content)</p>
+                </div>
+            </div>
+            <br />
+            <div class="post-footer">
+                <p class=" float-right post-font"></p>
+                @if (item.LikedByUser)
+                {
+                    <button id="unlike" class="liked-btn circle-btn">&#9829</button>
+                }
+                else
+                { <button id="like" class="circle-btn">&#9825</button>}
+                <button class="circle-btn comment-btn">&#128488</button>
+                <div class="post-font float-right">@item.Likes Likes     </div>
+
+            </div>
+            <div id="comments">
+                <div class="collapsible comments">
+                    <div class="line"> <input placeholder="Write a Comment..."></input></div>
+
+                    @foreach (var comment in item.AllComments)
+                    {
+                        <div class="comment">
+                            <div>
+                                <p class="post-font">@Html.DisplayFor(modelItem => comment.CommentBy)</p>
+                                @if (comment.CommentBy.Trim() == Model.CurrentUser.Username)
+                                {
+                                    <a id="@comment.CommentID" class="float-right delete-btn">&#128465;</a>
+                                }
+                            </div>
+                            <div>
+                                <p class="post-data">@Html.DisplayFor(modelItem => comment.Comment1)</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <br />
+    }
+</div>
+
+

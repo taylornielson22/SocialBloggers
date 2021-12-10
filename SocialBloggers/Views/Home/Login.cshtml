@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "User Page";
+}
+
+<h1 class="cute-font text-center">Social Bloggers</h1>
+<br />
+<div>
+    <div class="textbox-input" style="padding-left:15%; padding-right:15%" >
+        <input id="username" placeholder="Username" type="text" />
+        <p id="username-error" hidden class="text-danger">User doesn't exist</p>
+    </div>
+    <br />
+    <div class="textbox-input" style="padding-left:15%; padding-right:15%">
+        <input id="password" placeholder="Password" type="text" />
+        <p id="password-error" hidden class="text-danger">Incorrect password</p>
+        <div class="login"><button id="login">LOGIN</button></div>
+    </div>
+    <br />
+    <div class="textbox-input text-center">
+        @Html.ActionLink("Create An Account", "CreateAccount", "Home")
+    </div>
+
+
+</div>
