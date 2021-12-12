@@ -8,7 +8,7 @@
 7. When website is launched make sure url is https://localhost:44315/ or https://localhost:44315/Home/Login. Otherwise it will state 'The resource cannot be found.'
 
 ### Change Browser to Google Chrome
- Click on dropdown arrow on the right side of button > Click 'Browse with..' > Select Google Chrome > Browse
+ Click on dropdown arrow on the right side of green play button > Click 'Browse with..' > Select Google Chrome > Browse
   - https://stackoverflow.com/questions/53886095/launch-browser-in-chrome-as-application-via-asp-net-web-application-properties-p 
 
  ### Trouble Running Application
