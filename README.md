@@ -5,6 +5,7 @@
 4. In solution explorer, Right click SocialBloggers solution file > click Clean
 5. In solution explorer, Right click SocialBloggers solution file > click Rebuild Solution
 6. Located toward top of screen, click the green play button stating 'IIS Express'
+7. When website is launched make sure url is https://localhost:44315/ or https://localhost:44315/Home/Login. Otherwise it will state 'The resource cannot be found.'
 
 ### Change Browser to Google Chrome
  Click on dropdown arrow on the right side of button > Click 'Browse with..' > Select Google Chrome > Browse
