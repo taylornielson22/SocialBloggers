@@ -27,11 +27,11 @@ namespace SocialBloggers.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Like> Likes { get; set; }
-        public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Following> Followings { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
     
         public virtual ObjectResult<spGetPosts_Result> spGetPosts(string username)
         {

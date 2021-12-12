@@ -1,33 +1,30 @@
 ﻿@model SocialBloggers.Models.User
 
-<h1 class="cute-font text-center">Create New Account</h1>
-@using (Html.BeginForm("CreateAccount"))
-{
-    @Html.AntiForgeryToken()
+<div class="center"><h1 class="cute-font center-text">Create New Account</h1></div>
 
-    <div class="create-account">
-        <hr />
-        <div class="create-form">
+    <div class="center">
+        <div class="credential-form">
             <div class="create-group">
                 @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "create-label" })
                 <div>
-                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "textbox-input" } })
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "" } })
+                    <div class="text-danger" hidden id="userexists-error">Username already exists</div>
                 </div>
             </div>
 
             <div class="create-group">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "create-label" })
                 <div>
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "textbox-input" } })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "" } })
                 </div>
             </div>
 
             <div>
-                <div>
-                    <input id="createAccount" type="submit" value="Creat Account" class="btn btn-default" />
+                <div class="center">
+                    <input id="createAccount" type="submit" class="login" value="Creat Account" />
                 </div>
             </div>
         </div>
     </div>
-}
+
 

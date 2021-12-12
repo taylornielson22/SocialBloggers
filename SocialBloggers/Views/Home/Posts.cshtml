@@ -1,11 +1,11 @@
 ﻿@model SocialBloggers.Models.HomeSummary
 
 
-<h1 class="cute-font" text-center">@ViewBag.Title</h1>
+<h1 class="cute-font margin-left" style="margin-bottom:5px">@ViewBag.Title</h1>
 @if (ViewBag.Title != "Blog Feed")
 {
 <div class="followings">
-    <div class="following">
+    <div class="following margin-left">
         Following: @Model.CurrentProfile.Following.Count()
         <span class="tooltip-following">
             @foreach (var user in Model.CurrentProfile.Following)
@@ -14,7 +14,7 @@
             }
             </span>
     </div>
-    <div class="followers">Followers: @Model.CurrentProfile.Followers.Count() 
+    <div class="followers margin-left" style="margin-bottom:5px">Followers: @Model.CurrentProfile.Followers.Count() 
         <span class="tooltip-followers">
             @foreach (var follower in Model.CurrentProfile.Followers)
             {

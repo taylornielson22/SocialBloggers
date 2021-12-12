@@ -6,27 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div id="main">
-        <div class="navbar navbar-fixed-top pink-header">
+        <div class="naviagtion navmain">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Soical Bloggers", "Posts", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a id="myProfile">My Profile</a></li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
-                        <li>@Html.ActionLink("AllUsers", "AllUsers", "Home")</li>
-                    </ul>
-                </div>
+                <ul>
+                    <li>@Html.ActionLink("Soical Bloggers", "Posts", "Home")</li>
+                    <li><a id="myProfile">My Profile</a></li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    <li>@Html.ActionLink("AllUsers", "AllUsers", "Home")</li>
+                </ul>
                 <div style="margin-left:auto; margin-right:0" id="currentUser"></div>
             </div>
         </div>
@@ -54,12 +44,8 @@
             </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/js")
     @RenderSection("scripts", required: false)
-    @section scripts{
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-    <script src="~/Scripts/BlogPosts.js"></script>
 
 </body>
 

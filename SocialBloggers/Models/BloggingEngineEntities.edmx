@@ -47,15 +47,13 @@ warning 6002: The table/view 'BloggingEngine.dbo.Posts' does not have a primary 
             <PropertyRef Name="Username" />
             <PropertyRef Name="Title" />
             <PropertyRef Name="Lastmodified" />
-            <PropertyRef Name="Content" />
           </Key>
           <Property Name="Postid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Content" Type="varchar(max)" Nullable="false" />
+          <Property Name="Content" Type="varchar(max)" />
           <Property Name="Likes" Type="int" />
           <Property Name="Lastmodified" Type="date" Nullable="false" />
-          <Property Name="Comments" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -64,7 +62,6 @@ warning 6002: The table/view 'BloggingEngine.dbo.Posts' does not have a primary 
           <Property Name="Userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="LoggedIn" Type="int" />
         </EntityType>
         <Function Name="spGetPosts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="varchar" Mode="In" />
@@ -98,8 +95,7 @@ warning 6002: The table/view 'BloggingEngine.dbo.Posts' does not have a primary 
     [Posts].[Title] AS [Title], 
     [Posts].[Content] AS [Content], 
     [Posts].[Likes] AS [Likes], 
-    [Posts].[Lastmodified] AS [Lastmodified], 
-    [Posts].[Comments] AS [Comments]
+    [Posts].[Lastmodified] AS [Lastmodified]
     FROM [dbo].[Posts] AS [Posts]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -107,15 +103,6 @@ warning 6002: The table/view 'BloggingEngine.dbo.Posts' does not have a primary 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BloggingEngineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Username" />
-          </Key>
-          <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LoggedIn" Type="Int32" />
-        </EntityType>
         <EntityType Name="Like">
           <Key>
             <PropertyRef Name="PostID" />
@@ -125,31 +112,15 @@ warning 6002: The table/view 'BloggingEngine.dbo.Posts' does not have a primary 
           <Property Name="Username" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityContainer Name="BloggingEngineEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Likes" EntityType="Self.Like" />
-          <EntitySet Name="Posts" EntityType="BloggingEngineModel.Post" />
           <EntitySet Name="Followings" EntityType="BloggingEngineModel.Following" />
           <FunctionImport Name="spGetPosts" ReturnType="Collection(BloggingEngineModel.spGetPosts_Result)">
           <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Comments" EntityType="BloggingEngineModel.Comment" />
+          <EntitySet Name="Users" EntityType="BloggingEngineModel.User" />
+          <EntitySet Name="Posts" EntityType="BloggingEngineModel.Post" />
         </EntityContainer>
-        <EntityType Name="Post">
-          <Key>
-            <PropertyRef Name="Postid" />
-            <PropertyRef Name="Username" />
-            <PropertyRef Name="Title" />
-            <PropertyRef Name="Content" />
-            <PropertyRef Name="Lastmodified" />
-          </Key>
-          <Property Name="Postid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Likes" Type="Int32" />
-          <Property Name="Lastmodified" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Comments" Type="Int32" />
-        </EntityType>
         <EntityType Name="Following">
           <Key>
             <PropertyRef Name="User" />
@@ -178,40 +149,39 @@ warning 6002: The table/view 'BloggingEngine.dbo.Posts' does not have a primary 
           <Property Name="Comment1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Postid" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Lastmodified" />
+          </Key>
+          <Property Name="Postid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Likes" Type="Int32" />
+          <Property Name="Lastmodified" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BloggingEngineModelStoreContainer" CdmEntityContainer="BloggingEngineEntities">
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="BloggingEngineModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="LoggedIn" ColumnName="LoggedIn" />
-                <ScalarProperty Name="Userid" ColumnName="Userid" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Likes">
             <EntityTypeMapping TypeName="BloggingEngineModel.Like">
               <MappingFragment StoreEntitySet="Likes">
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Posts">
-            <EntityTypeMapping TypeName="BloggingEngineModel.Post">
-              <MappingFragment StoreEntitySet="Posts">
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="Lastmodified" ColumnName="Lastmodified" />
-                <ScalarProperty Name="Likes" ColumnName="Likes" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Postid" ColumnName="Postid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -242,6 +212,27 @@ warning 6002: The table/view 'BloggingEngine.dbo.Posts' does not have a primary 
                 <ScalarProperty Name="Comment1" ColumnName="Comment" />
                 <ScalarProperty Name="CommentBy" ColumnName="CommentBy" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BloggingEngineModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="BloggingEngineModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="Lastmodified" ColumnName="Lastmodified" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Postid" ColumnName="Postid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -11,12 +11,7 @@ namespace SocialBloggers.Controllers
     public class HomeController : Controller
     {
         public string[] BoxClasses = { "bluebox", "creambox", "greenbox", "pinkbox"};
-     
-        public ActionResult Index()
-        {
-            return RedirectToRoute(Login());
-        }
-
+    
         public ActionResult MyProfile()
         {
             if (!isLoggedIn())
@@ -71,11 +66,6 @@ namespace SocialBloggers.Controllers
             return View(homeView);
         }
 
-        public ActionResult Profile()
-        {
-            var user = Request.Cookies.Get("user").Value;
-            return RedirectToAction("Posts?user=" + user);
-        }
 
         public IEnumerable<User> AlllUsers()
         {
@@ -101,6 +91,10 @@ namespace SocialBloggers.Controllers
 
         public ActionResult AllUsers()
         {
+            if (!isLoggedIn())
+            {
+                return RedirectToAction("Login");
+            }
             var view = new AllUserSummary();
             view.Users = AlllUsers();
             view.CurrentUser = CurrentUser();
@@ -157,6 +151,7 @@ namespace SocialBloggers.Controllers
                 var posts = (from p in db.Posts
                         where p.Username == user
                              select p).ToList();
+                posts.OrderByDescending(p => p.Postid);
                 int i = 0;
                 foreach (var p in posts)
                 {
@@ -174,7 +169,7 @@ namespace SocialBloggers.Controllers
                     p.ColorClass = BoxClasses[i];
                     i++;
                 }
-                return posts.OrderByDescending(p => p.Date);
+                return posts;
             }
         }
 
@@ -253,7 +248,7 @@ namespace SocialBloggers.Controllers
             using (BloggingEngineEntities db = new BloggingEngineEntities())
             {
                 var user = Request.Cookies.Get("user").Value; 
-                var result = db.spGetPosts(user);
+                var result = db.spGetPosts(user).OrderByDescending(p => p.Postid);
                 var posts = new List<Post>();
                 int i = 0;
                 foreach (var post in result.ToList())
@@ -305,36 +300,29 @@ namespace SocialBloggers.Controllers
         [HttpGet]
         public int LoginAttempt(string username, string password)
         {
-            using (BloggingEngineEntities db = new BloggingEngineEntities())
+            var result = 0;
+            if (UserExists(username))
+                result = -1;
+
+            if (ValidLogin(username, password))
             {
-                if (ValidLogin(username, password))
-                {
-                    HttpCookie cookie = new HttpCookie("user");
-                    cookie.Value = username.Trim().ToLower();
-                    cookie.Expires = System.DateTime.Now.AddHours(1);
-                    System.Web.HttpContext.Current.Response.SetCookie(cookie);
-
-                    return 1;
-                }
-
-                return 0;
+                HttpCookie cookie = new HttpCookie("user");
+                cookie.Value = username.Trim().ToLower();
+                cookie.Expires = System.DateTime.Now.AddHours(1);
+                System.Web.HttpContext.Current.Response.SetCookie(cookie);
+                result = 1;
             }
+            return result;
         }
 
         public bool ValidLogin(string username, string password)
         {
             using (BloggingEngineEntities db = new BloggingEngineEntities())
             {
-                if (UserExists(username))
-                {
-                    var valid = (from u in db.Users
-                                 where u.Username == username
-                                  && u.Password == password
-                                 select u.Userid).Count() > 0;
-
-                    return valid;
-                }
-                return false;
+                return (from u in db.Users
+                        where u.Username == username
+                         && u.Password == password
+                        select u.Userid).Count() > 0;
             }
         }
 
@@ -342,13 +330,9 @@ namespace SocialBloggers.Controllers
         {
             using (BloggingEngineEntities db = new BloggingEngineEntities())
             {
-                var userexists = (from u in db.Users
-                              where u.Username == username
-                              select u.Userid).Count();
-                if (userexists == 0)
-                    return false;
-                else
-                    return true;
+                return ((from u in db.Users
+                         where u.Username == username
+                         select u.Userid).Count() > 0);
             }
         }
 

@@ -11,7 +11,7 @@ namespace SocialBloggers.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Post
     {
         public int Postid { get; set; }
@@ -20,17 +20,12 @@ namespace SocialBloggers.Models
         public string Content { get; set; }
         public Nullable<int> Likes { get; set; }
         public System.DateTime Lastmodified { get; set; }
-        public Nullable<int> Comments { get; set; }
-
-        public bool LikedByUser { get; set; }
-
         public string ColorClass { get; set; }
 
-        public bool isCurrentUserPost { get; set; }
+        public Boolean LikedByUser { get; set; }
 
         public string Date { get; set; }
 
-        public IEnumerable<Comment> AllComments { get; set; }
-
+        public List<Comment> AllComments { get; set; }
     }
 }

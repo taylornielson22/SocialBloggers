@@ -17,8 +17,6 @@ namespace SocialBloggers.Models
         public int Userid { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public Nullable<int> LoggedIn { get; set; }
-
         public string ColorClass { get; set; }
 
         public Boolean Follows { get; set; }
