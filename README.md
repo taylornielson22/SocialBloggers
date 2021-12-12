@@ -9,7 +9,7 @@
 ### Change Browser to Google Chrome
  Click on dropdown arrow on the right side of button > Click 'Browse with..' > Select Google Chrome > Browse
   - https://stackoverflow.com/questions/53886095/launch-browser-in-chrome-as-application-via-asp-net-web-application-properties-p 
-  - 
+
  ### Trouble Running Application
  - Try right clicking SocialBloggers web project > Click 'Unload Project'. Right click project again and click "Reload Project'. Then rebuild solution.
  
